@@ -12,14 +12,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/my-thoughts/</guid>
-      <description>&lt;p&gt;Hello My name is Nick
-!&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250220014758.png&#34; alt=&#34;Image Description&#34;&gt;
-!&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250312134921.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I am still wondering how i can make different posts and seperate them individually. :/&lt;/p&gt;</description>
-      <content>&lt;p&gt;Hello My name is Nick
-!&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250220014758.png&#34; alt=&#34;Image Description&#34;&gt;
-!&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250312134921.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I am still wondering how i can make different posts and seperate them individually. :/&lt;/p&gt;
+      <description>&lt;p&gt;Welcome to my blog! I will be updating this with coding projects.&lt;/p&gt;
+&lt;p&gt;!&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250312193955.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;Welcome to my blog! I will be updating this with coding projects.&lt;/p&gt;
+&lt;p&gt;!&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250312193955.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
 </content>
     </item>
     
