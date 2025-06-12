@@ -21,5 +21,13 @@
     <lastmod>2025-03-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/cpp/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/optimizations/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/n-body-shenanigans/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/simulations/</loc>
   </url>
 </urlset>

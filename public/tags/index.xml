@@ -27,5 +27,35 @@
       <content></content>
     </item>
     
+    <item>
+      <title>Cpp</title>
+      <link>http://localhost:1313/tags/cpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cpp/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Optimizations</title>
+      <link>http://localhost:1313/tags/optimizations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/optimizations/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Simulations</title>
+      <link>http://localhost:1313/tags/simulations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/simulations/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
   </channel>
 </rss>

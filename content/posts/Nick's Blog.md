@@ -7,7 +7,7 @@ tags:
   - first_page
 ---
 
-# <span style="color:rgb(255, 0, 0)">Welcome</span>
+# <span style="color:rgb(255, 0, 0)">Who Am I</span>
 
 Welcome to my <span style="color:rgb(255, 255, 0)">blog!</span> I will be updating this with coding projects.  Thanks for viewing :)
 
