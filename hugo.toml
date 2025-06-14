@@ -97,10 +97,6 @@ pagesize = 5
           name = "About"
           url = "https://feverc0de.github.io/posts/about/"
         [[languages.en.menu.main]]
-          identifier = "showcase"
-          name = "Showcase"
-          url = "/showcase"
-        [[languages.en.menu.main]]
           identifier = "French"
           name = "French Blog"
           url = "/showcase"
