@@ -22,4 +22,4 @@ Hola, my name is Nick, a 20 year old student from Ghana, studying in the state o
 - To keep it brief my other interests, are working out and tennis. I am also addicted to jump roping and enjoy reading!
 
 	<h3>The end?</h3>
-That's about it! Well not really, you can learn more me and my projects in the other posts. Thanks for reading!
+That's about it! Well not really, you can learn more me and my projects in the other posts. Thanks for reading! <a href="/hugo-theme-terminal-demo/posts/showcase-code/">code showcase</a>
