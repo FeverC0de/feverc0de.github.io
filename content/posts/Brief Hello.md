@@ -18,10 +18,10 @@ Hola, my name is Nick, a 20 year old student from Ghana, studying in the state o
 - Games! Board games or video games I love em all. My **REDACTED** hours of play time in Factorio and RimWorld says enough. I'm also a fan of grand strategy games like CK2, and Stellaris. If i need a little mental break, I don't mind a little bit of Elder Scrolls.
 
 
-- Afrobeats enters my soul and allows me to discover muscles I did not know existed. Asake and BurnaBoy are the GOATs. My favorite album has to be <a href = "">Love Damini - Burna Boy</a>. My favorite song from the album <a> It's Plenty</a> is just euphoric!. My other favorite songs has got to be <a> Lonely At The Top -Asake </a> and <a> Terminator - King Promise</a>
+- Afrobeats enters my soul and allows me to discover muscles I did not know existed. Asake and BurnaBoy are the GOATs. My favorite album has to be [Love Damini - Burna Boy](https://www.youtube.com/watch?v=J3rOq9lYjeQ&list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb). My favorite song from the album [It's Plenty](https://www.youtube.com/watch?v=F8bZVnynDdc&list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&index=9) is just euphoric!. My other favorite songs has got to be [Lonely At The Top - Asake](https://www.youtube.com/watch?v=3JQA7W_dLUg&list=RD3JQA7W_dLUg&start_radio=1) and [Terminator - King Promise](https://www.youtube.com/watch?v=NPCC02SaJVg&list=RDNPCC02SaJVg&start_radio=1) 
 - To keep it brief my other interests, are working out and tennis. I am also addicted to jump roping and enjoy reading!
 
 	<h3>The end?</h3>
-That's about it! Well not really, you can learn more me and my projects in the other posts. Thanks for reading! [google](google.com)
+That's about it! Well not really, you can learn more me and my projects in the other posts. Thanks for reading!
 
 
