@@ -100,32 +100,32 @@ pagesize = 5
           identifier = "French"
           name = "French Blog"
           url = "/about"
-    [languages.pl]
-      languageName = "Polski"
-      title = "Terminal"
-      [languages.pl.params]
-        subtitle = "Prosty theme w stylu retro dla Hugo"
-        owner = ""
-        keywords = ""
-        copyright = ""
-        menuMore = "Pokaż więcej"
-        readMore = "Czytaj dalej"
-        readOtherPosts = "Zobacz więcej postów"
-        newerPosts = "Nowsze posty"
-        olderPosts = "Starsze posty"
-        missingContentMessage = "Nie odnaleziono strony..."
-        missingBackButtonLabel = "Wróć do strony głównej"
-
-      [languages.pl.params.logo]
-        logoText = "Terminal"
-
-      [languages.pl.menu]
-        [[languages.pl.menu.main]]
-          identifier = "about"
-          name = "O motywie"
-          url = "/pl/about"
-        [[languages.pl.menu.main]]
-          identifier = "showcase"
-          name = "Prezentacja"
-          url = "/posts/showcase"
+  [languages.fr]
+    languageName = "Français"
+    title = "Terminal"
+    [languages.fr.params]
+      subtitle = "Un thème rétro simple pour Hugo"
+      owner = ""
+      keywords = ""
+      copyright = ""
+      menuMore = "Voir plus"
+      readMore = "Lire la suite"
+      readOtherPosts = "Voir plus d’articles"
+      newerPosts = "Articles plus récents"
+      olderPosts = "Articles plus anciens"
+      missingContentMessage = "Page introuvable..."
+      missingBackButtonLabel = "Retour à la page d’accueil"
+  
+    [languages.fr.params.logo]
+      logoText = "Terminal"
+  
+    [languages.fr.menu]
+      [[languages.fr.menu.main]]
+        identifier = "about"
+        name = "À propos du thème"
+        url = "/fr/about"
+      [[languages.fr.menu.main]]
+        identifier = "showcase"
+        name = "Présentation"
+        url = "/posts/showcase"
 
