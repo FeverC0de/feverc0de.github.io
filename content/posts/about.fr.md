@@ -1,0 +1,1 @@
+Salut ! Je m'appelle Nick et j'ai créé ce site pour pratiquer mon français. Merci de le lire !
