@@ -99,4 +99,4 @@ pagesize = 5
         [[languages.en.menu.main]]
           identifier = "French"
           name = "French Blog"
-          url = "/showcase"
+          url = "/about"
