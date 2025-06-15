@@ -101,8 +101,8 @@ pagesize = 5
           name = "French Blog"
           url = "/about"
   [languages.fr]
-    languageName = "Français"
-    title = "Terminal"
+    languageName = "French Blog"
+    title = "Réflexion Quotidienne en Français"
     [languages.fr.params]
       subtitle = "Un thème rétro simple pour Hugo"
       owner = ""
