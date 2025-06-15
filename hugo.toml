@@ -95,7 +95,7 @@ pagesize = 5
         [[languages.en.menu.main]]
           identifier = "about"
           name = "About"
-          url = "https://feverc0de.github.io/posts/about/"
+          url = "https://feverc0de.github.io/abouta/"
         [[languages.en.menu.main]]
           identifier = "French"
           name = "French Blog"
