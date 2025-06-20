@@ -99,7 +99,7 @@ pagesize = 5
         [[languages.en.menu.main]]
           identifier = "French"
           name = "French Blog"
-          url = "/about"
+          url = "/fr"
   [languages.fr]
     languageName = "French Blog"
     title = "Réflexion Quotidienne en Français"
