@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Réflexion Quotidienne en Français</title>
+    <link>http://localhost:1313/fr/tags/</link>
+    <description>Recent content in Tags on Réflexion Quotidienne en Français</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr</language>
+    <lastBuildDate>Fri, 20 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/fr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Etudes</title>
+      <link>http://localhost:1313/fr/tags/etudes/</link>
+      <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/fr/tags/etudes/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Français</title>
+      <link>http://localhost:1313/fr/tags/fran%C3%A7ais/</link>
+      <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/fr/tags/fran%C3%A7ais/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Vie</title>
+      <link>http://localhost:1313/fr/tags/vie/</link>
+      <pubDate>Fri, 20 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/fr/tags/vie/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/fr/tags/about/</link>
+      <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/fr/tags/about/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Premier_page</title>
+      <link>http://localhost:1313/fr/tags/premier_page/</link>
+      <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/fr/tags/premier_page/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>

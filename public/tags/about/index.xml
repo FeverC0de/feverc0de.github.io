@@ -1,22 +1,69 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>About on Terminal</title>
+    <title>About on Nick&#39;s Blog</title>
     <link>http://localhost:1313/tags/about/</link>
-    <description>Recent content in About on Terminal</description>
+    <description>Recent content in About on Nick&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 12 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Page</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
+&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana, studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
+&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana, studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;
+&lt;h1 id=&#34;interests&#34;&gt;Interests&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I love making cool projects! From AI to simulations I tend to lose track of time discovering new compilations errors.  My favorite projects so far, have been a sketch classifier and an awesome super duper optimized n-body simulation using quad trees and z-order curves!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Games! Board games or video games I love em all. My &lt;strong&gt;REDACTED&lt;/strong&gt; hours of play time in Factorio and RimWorld says enough. I&amp;rsquo;m also a fan of grand strategy games like CK2, and Stellaris. If i need a little mental break, I don&amp;rsquo;t mind a little bit of Elder Scrolls.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Afrobeats enters my soul and allows me to discover muscles I did not know existed. Asake and BurnaBoy are the GOATs. My favorite album has to be &lt;a href=&#34;https://www.youtube.com/watch?v=J3rOq9lYjeQ&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&#34;&gt;Love Damini - Burna Boy&lt;/a&gt;. My favorite song from the album &lt;a href=&#34;https://www.youtube.com/watch?v=F8bZVnynDdc&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&amp;amp;index=9&#34;&gt;It&amp;rsquo;s Plenty&lt;/a&gt; is just euphoric!. My other favorite songs has got to be &lt;a href=&#34;https://www.youtube.com/watch?v=3JQA7W_dLUg&amp;amp;list=RD3JQA7W_dLUg&amp;amp;start_radio=1&#34;&gt;Lonely At The Top - Asake&lt;/a&gt; and &lt;a href=&#34;https://www.youtube.com/watch?v=NPCC02SaJVg&amp;amp;list=RDNPCC02SaJVg&amp;amp;start_radio=1&#34;&gt;Terminator - King Promise&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To keep it brief my other interests, are working out and tennis. I am also addicted to jump roping and enjoy reading!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;the-end&#34;&gt;The end?&lt;/h1&gt;
+&lt;p&gt;That&amp;rsquo;s about it! Well not really, you can learn more me and my projects in the other posts. Thanks for reading!&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>About Page</title>
       <link>http://localhost:1313/posts/about/</link>
       <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/about/</guid>
-      <description>&lt;h1 id=&#34;brief-hello&#34;&gt;&lt;!-- raw HTML omitted --&gt;Brief Hello&lt;!-- raw HTML omitted --&gt;&lt;/h1&gt;
-&lt;p&gt;Hola, this is my first post. I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life!&lt;/p&gt;</description>
-      <content>&lt;h1 id=&#34;brief-hello&#34;&gt;&lt;!-- raw HTML omitted --&gt;Brief Hello&lt;!-- raw HTML omitted --&gt;&lt;/h1&gt;
-&lt;p&gt;Hola, this is my first post. I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life!&lt;/p&gt;
+      <description>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
+&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana, studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
+&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana, studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;
+&lt;h1 id=&#34;interests&#34;&gt;Interests&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I love making cool projects! From AI to simulations I tend to lose track of time discovering new compilations errors.  My favorite projects so far, have been a sketch classifier and an awesome super duper optimized n-body simulation using quad trees and z-order curves!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Games! Board games or video games I love em all. My &lt;strong&gt;REDACTED&lt;/strong&gt; hours of play time in Factorio and RimWorld says enough. I&amp;rsquo;m also a fan of grand strategy games like CK2, and Stellaris. If i need a little mental break, I don&amp;rsquo;t mind a little bit of Elder Scrolls.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Afrobeats enters my soul and allows me to discover muscles I did not know existed. Asake and Burna Boy are the GOATs. My favorite album has to be &lt;a href=&#34;https://www.youtube.com/watch?v=J3rOq9lYjeQ&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&#34;&gt;Love Damini - Burna Boy&lt;/a&gt;. My favorite song from the album &lt;a href=&#34;https://www.youtube.com/watch?v=F8bZVnynDdc&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&amp;amp;index=9&#34;&gt;It&amp;rsquo;s Plenty&lt;/a&gt; is just euphoric!. My other favorite songs has got to be &lt;a href=&#34;https://www.youtube.com/watch?v=3JQA7W_dLUg&amp;amp;list=RD3JQA7W_dLUg&amp;amp;start_radio=1&#34;&gt;Lonely At The Top - Asake&lt;/a&gt; and &lt;a href=&#34;https://www.youtube.com/watch?v=NPCC02SaJVg&amp;amp;list=RDNPCC02SaJVg&amp;amp;start_radio=1&#34;&gt;Terminator - King Promise&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To keep it brief my other interests, are working out and tennis. I am also addicted to jump roping and enjoy reading!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;the-end&#34;&gt;The end?&lt;/h1&gt;
+&lt;p&gt;That&amp;rsquo;s about it! Well not really, you can learn more me and my projects in the other posts. Thanks for reading!&lt;/p&gt;
 </content>
     </item>
     

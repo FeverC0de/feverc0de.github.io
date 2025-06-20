@@ -2,11 +2,12 @@
 <html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
-    <title>Optimized N-Body Simulations :: Terminal</title>
+    <title>Optimized N-Body Simulation Part 1 Quad Tree :: Nick&#39;s Blog</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
+<meta name="description" content="N-body Shenanigans (In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!
+" />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
@@ -80,10 +81,11 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Optimized N-Body Simulations">
-<meta property="og:description" content="" />
+<meta property="og:title" content="Optimized N-Body Simulation Part 1 Quad Tree">
+<meta property="og:description" content="N-body Shenanigans (In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!
+" />
 <meta property="og:url" content="http://localhost:1313/posts/n-body-shenanigans/" />
-<meta property="og:site_name" content="Terminal" />
+<meta property="og:site_name" content="Nick&#39;s Blog" />
 
   <meta property="og:image" content="http://localhost:1313/og-image.png">
 
@@ -91,7 +93,7 @@
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="0001-01-01 00:00:00 &#43;0000 UTC" />
+  <meta property="article:published_time" content="2025-06-14 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -108,14 +110,14 @@
 <body>
 
 
-<div class="container">
+<div class="container center">
 
   <header class="header">
   <div class="header__inner">
     <div class="header__logo">
       <a href="/">
   <div class="logo">
-    Terminal
+    Nick&#39;s Blog
   </div>
 </a>
 
@@ -127,19 +129,44 @@
     <ul class="menu__dropdown">
       
         
-          <li><a href="/about">About</a></li>
+          <li><a href="https://feverc0de.github.io/about/">About</a></li>
         
       
         
-          <li><a href="/showcase">Showcase</a></li>
+          <li><a href="/fr">French Blog</a></li>
         
       
+      
+        <hr />
+        
+          <li>
+            <a href="http://localhost:1313/fr/">French Blog</a>
+          </li>
+        
+          <li>
+            <a href="http://localhost:1313/">English</a>
+          </li>
+        
       
     </ul>
   </li>
 </ul>
 
     
+    
+      <ul class="menu menu--desktop menu--language-selector">
+  <li class="menu__trigger">English&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        <li><a href="http://localhost:1313/fr/">French Blog</a></li>
+      
+        <li><a href="http://localhost:1313/">English</a></li>
+      
+    </ul>
+  </li>
+</ul>
+
     
   </div>
   
@@ -148,11 +175,11 @@
     
       
         
-          <li><a href="/about" >About</a></li>
+          <li><a href="https://feverc0de.github.io/about/" >About</a></li>
         
       
         
-          <li><a href="/showcase" >Showcase</a></li>
+          <li><a href="/fr" >French Blog</a></li>
         
       
       
@@ -168,9 +195,9 @@
     
 <article class="post">
   <h1 class="post-title">
-    <a href="http://localhost:1313/posts/n-body-shenanigans/">Optimized N-Body Simulations</a>
+    <a href="http://localhost:1313/posts/n-body-shenanigans/">Optimized N-Body Simulation Part 1 Quad Tree</a>
   </h1>
-  <div class="post-meta"></div>
+  <div class="post-meta"><time class="post-date">2025-06-14</time></div>
 
   
     <span class="post-tags">
@@ -181,6 +208,8 @@
       
       #<a href="http://localhost:1313/tags/cpp/">cpp</a>&nbsp;
       
+      #<a href="http://localhost:1313/tags/in_progress/">in_progress</a>&nbsp;
+      
     </span>
   
   
@@ -188,7 +217,12 @@
 
   
 
-  <div class="post-content"></div>
+  <div class="post-content"><div>
+        <h1 id="n-body-shenanigans-in-progress">N-body Shenanigans (In Progress)<a href="#n-body-shenanigans-in-progress" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!</p>
+<p>If you have no idea what either of those words mean, neither did I a couple weeks ago. But do not worry, after reading this we will both be super-experts in optimizing n-body simulations.</p>
+
+      </div></div>
 
   
     
@@ -199,11 +233,11 @@
   </div>
   <div class="pagination__buttons">
     
-      <a href="http://localhost:1313/posts/about/" class="button inline prev">
+    
+    
+      <a href="http://localhost:1313/posts/about/" class="button inline next">
         About Page
       </a>
-    
-    
     
   </div>
 </div>

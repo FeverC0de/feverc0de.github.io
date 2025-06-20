@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>In_progress on Nick&#39;s Blog</title>
+    <link>http://localhost:1313/tags/in_progress/</link>
+    <description>Recent content in In_progress on Nick&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/in_progress/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Optimized N-Body Simulation Part 1 Quad Tree</title>
+      <link>http://localhost:1313/posts/n-body-shenanigans/</link>
+      <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/n-body-shenanigans/</guid>
+      <description>&lt;h1 id=&#34;n-body-shenanigans-in-progress&#34;&gt;N-body Shenanigans (In Progress)&lt;/h1&gt;
+&lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;n-body-shenanigans-in-progress&#34;&gt;N-body Shenanigans (In Progress)&lt;/h1&gt;
+&lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!&lt;/p&gt;
+&lt;p&gt;If you have no idea what either of those words mean, neither did I a couple weeks ago. But do not worry, after reading this we will both be super-experts in optimizing n-body simulations.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

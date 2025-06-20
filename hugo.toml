@@ -70,7 +70,7 @@ pagesize = 5
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Terminal"
+    title = "Nick's Blog"
 
     [languages.en.params]
       subtitle = "A simple, retro theme for Hugo"
@@ -117,7 +117,7 @@ pagesize = 5
       missingBackButtonLabel = "Retour à la page d’accueil"
   
     [languages.fr.params.logo]
-      logoText = "Terminal"
+      logoText = "French Blog"
   
     [languages.fr.menu]
       [[languages.fr.menu.main]]
