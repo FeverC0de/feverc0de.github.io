@@ -8,16 +8,20 @@
     <language>en</language>
     <lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Optimized N-Body Simulation Part 1 Quad Tree</title>
+      <title>Optimized Real Time N-Body Simulation - Part 1 Quad Tree</title>
       <link>http://localhost:1313/posts/n-body-shenanigans/</link>
       <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/n-body-shenanigans/</guid>
-      <description>&lt;h1 id=&#34;n-body-shenanigans-in-progress&#34;&gt;N-body Shenanigans (In Progress)&lt;/h1&gt;
-&lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!&lt;/p&gt;</description>
-      <content>&lt;h1 id=&#34;n-body-shenanigans-in-progress&#34;&gt;N-body Shenanigans (In Progress)&lt;/h1&gt;
-&lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!&lt;/p&gt;
+      <description>&lt;h1 id=&#34;n-body-shenanigans-writing-in-progress&#34;&gt;N-body Shenanigans (Writing In Progress)&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250704025301.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;n-body-shenanigans-writing-in-progress&#34;&gt;N-body Shenanigans (Writing In Progress)&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250704025301.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!&lt;/p&gt;
 &lt;p&gt;If you have no idea what either of those words mean, neither did I a couple weeks ago. But do not worry, after reading this we will both be super-experts in optimizing n-body simulations.&lt;/p&gt;
+&lt;h2 id=&#34;simple-pair-reactions&#34;&gt;Simple Pair Reactions&lt;/h2&gt;
+&lt;p&gt;The simulation initially employed the Brute Force N-body Method, which is a direct approach whereby the gravitational attraction between each pair of particle is calculated. At a given timestep, the net force acting on a particle is computed, and its positions and accelerations are updated using Euler’s Method for numerical integration as follows:&lt;/p&gt;
 </content>
     </item>
     
@@ -58,9 +62,9 @@
       
       <guid>http://localhost:1313/posts/about/</guid>
       <description>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
-&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana, studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;</description>
+&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
-&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana, studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;
+&lt;p&gt;Hola, my name is Nick, a 20 year old student from Ghana studying in the state of Washington! I started this blog to document my programming journey, fun little side projects I make along the way, and whatever interesting stuff happens in my life, which you can find in the &lt;!-- raw HTML omitted --&gt;French Blog&lt;!-- raw HTML omitted --&gt; section (mon français est un peu rudimentaire. Soyez gentil ,svp, les francophones. :)).&lt;/p&gt;
 &lt;h1 id=&#34;interests&#34;&gt;Interests&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -70,14 +74,14 @@
 &lt;p&gt;Games! Board games or video games I love em all. My &lt;strong&gt;REDACTED&lt;/strong&gt; hours of play time in Factorio and RimWorld says enough. I&amp;rsquo;m also a fan of grand strategy games like CK2, and Stellaris. If I need a little mental break, I don&amp;rsquo;t mind a little bit of Elder Scrolls.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Afrobeats enters my soul and allows me to discover muscles I did not know existed. Asake and Burna Boy are the GOATs. My favorite album has to be &lt;a href=&#34;https://www.youtube.com/watch?v=J3rOq9lYjeQ&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&#34;&gt;Love Damini - Burna Boy&lt;/a&gt;. My favorite song from the album &lt;a href=&#34;https://www.youtube.com/watch?v=F8bZVnynDdc&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&amp;amp;index=9&#34;&gt;It&amp;rsquo;s Plenty&lt;/a&gt; is just euphoric!. My other favorite songs has got to be &lt;a href=&#34;https://www.youtube.com/watch?v=3JQA7W_dLUg&amp;amp;list=RD3JQA7W_dLUg&amp;amp;start_radio=1&#34;&gt;Lonely At The Top - Asake&lt;/a&gt; and &lt;a href=&#34;https://www.youtube.com/watch?v=NPCC02SaJVg&amp;amp;list=RDNPCC02SaJVg&amp;amp;start_radio=1&#34;&gt;Terminator - King Promise&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Afrobeats enters my soul. Asake and Burna Boy are life. My favorite album has to be &lt;a href=&#34;https://www.youtube.com/watch?v=J3rOq9lYjeQ&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&#34;&gt;Love Damini - Burna Boy&lt;/a&gt;. My favorite song from the album &lt;a href=&#34;https://www.youtube.com/watch?v=F8bZVnynDdc&amp;amp;list=PL_Sc3Kp_QmNYyjuRSZ9q5nbdYdQ39VTZb&amp;amp;index=9&#34;&gt;It&amp;rsquo;s Plenty&lt;/a&gt; is just euphoric!. My other favorite songs has got to be &lt;a href=&#34;https://www.youtube.com/watch?v=3JQA7W_dLUg&amp;amp;list=RD3JQA7W_dLUg&amp;amp;start_radio=1&#34;&gt;Lonely At The Top - Asake&lt;/a&gt; and &lt;a href=&#34;https://www.youtube.com/watch?v=NPCC02SaJVg&amp;amp;list=RDNPCC02SaJVg&amp;amp;start_radio=1&#34;&gt;Terminator - King Promise&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;To keep it brief my other interests, are working out and tennis. I am also addicted to jump roping and enjoy reading!&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;the-end&#34;&gt;The end?&lt;/h1&gt;
-&lt;p&gt;That&amp;rsquo;s about it! Well not really, you can learn more me and my projects in the other posts. Thanks for reading!&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s about it! You can learn more me and my projects in the other posts. Thanks for reading!&lt;/p&gt;
 </content>
     </item>
     

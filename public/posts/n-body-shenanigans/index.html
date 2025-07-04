@@ -2,11 +2,11 @@
 <html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
-    <title>Optimized N-Body Simulation Part 1 Quad Tree :: Nick&#39;s Blog</title>
+    <title>Optimized Real Time N-Body Simulation - Part 1 Quad Tree :: Nick&#39;s Blog</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="N-body Shenanigans (In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!
+<meta name="description" content="N-body Shenanigans (Writing In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
 " />
 <meta name="keywords" content="" />
 
@@ -81,8 +81,8 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Optimized N-Body Simulation Part 1 Quad Tree">
-<meta property="og:description" content="N-body Shenanigans (In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!
+<meta property="og:title" content="Optimized Real Time N-Body Simulation - Part 1 Quad Tree">
+<meta property="og:description" content="N-body Shenanigans (Writing In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
 " />
 <meta property="og:url" content="http://localhost:1313/posts/n-body-shenanigans/" />
 <meta property="og:site_name" content="Nick&#39;s Blog" />
@@ -195,7 +195,7 @@
     
 <article class="post">
   <h1 class="post-title">
-    <a href="http://localhost:1313/posts/n-body-shenanigans/">Optimized N-Body Simulation Part 1 Quad Tree</a>
+    <a href="http://localhost:1313/posts/n-body-shenanigans/">Optimized Real Time N-Body Simulation - Part 1 Quad Tree</a>
   </h1>
   <div class="post-meta"><time class="post-date">2025-06-14</time></div>
 
@@ -218,9 +218,12 @@
   
 
   <div class="post-content"><div>
-        <h1 id="n-body-shenanigans-in-progress">N-body Shenanigans (In Progress)<a href="#n-body-shenanigans-in-progress" class="hanchor" ariaLabel="Anchor">#</a> </h1>
-<p>We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 100,000 independent particles!</p>
+        <h1 id="n-body-shenanigans-writing-in-progress">N-body Shenanigans (Writing In Progress)<a href="#n-body-shenanigans-writing-in-progress" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p><img src="/images/Pasted%20image%2020250704025301.png" alt="Image Description"></p>
+<p>We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!</p>
 <p>If you have no idea what either of those words mean, neither did I a couple weeks ago. But do not worry, after reading this we will both be super-experts in optimizing n-body simulations.</p>
+<h2 id="simple-pair-reactions">Simple Pair Reactions<a href="#simple-pair-reactions" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The simulation initially employed the Brute Force N-body Method, which is a direct approach whereby the gravitational attraction between each pair of particle is calculated. At a given timestep, the net force acting on a particle is computed, and its positions and accelerations are updated using Euler’s Method for numerical integration as follows:</p>
 
       </div></div>
 
@@ -257,8 +260,10 @@
     <footer class="footer">
   <div class="footer__inner">
     
-
+      <div class="copyright">
+        <span>© 2025 Nick's Blog Powered by <a href="https://gohugo.io">Hugo</a></span>
     
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
       </div>
   </div>
 </footer>
