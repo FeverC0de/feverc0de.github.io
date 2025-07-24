@@ -8,16 +8,16 @@
     <language>en</language>
     <lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/optimizations/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Optimized Real Time N-Body Simulation - Part 1 Quad Tree</title>
+      <title>Optimized Real Time N-Body Simulation - Part 1 Brute Force Method</title>
       <link>http://localhost:1313/posts/n-body-shenanigans/</link>
       <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/n-body-shenanigans/</guid>
       <description>&lt;h1 id=&#34;n-body-shenanigans-writing-in-progress&#34;&gt;N-body Shenanigans (Writing In Progress)&lt;/h1&gt;
-&lt;p&gt;[[Pasted image 20250704025301.png]]&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250704025301.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;n-body-shenanigans-writing-in-progress&#34;&gt;N-body Shenanigans (Writing In Progress)&lt;/h1&gt;
-&lt;p&gt;[[Pasted image 20250704025301.png]]&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/Pasted%20image%2020250704025301.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!&lt;/p&gt;
 &lt;p&gt;If you have no idea what either of those words mean, neither did I a couple weeks ago. But do not worry, after reading this we will both be super-experts in optimizing n-body simulations.&lt;/p&gt;
 &lt;h2 id=&#34;simple-pair-interactions&#34;&gt;Simple Pair Interactions&lt;/h2&gt;
@@ -25,7 +25,71 @@
 $$
 \mathbf{a}_i^n = -G \sum_{\substack{j=1 \\ j \neq i}}^{N} m_j \frac{\mathbf{r}_j^n - \mathbf{r}_i^n}{\left( \| \mathbf{r}_j^n - \mathbf{r}_i^n \|^2 + \epsilon^2 \right)^{3/2}}
 \
-$$</content>
+$$&lt;p&gt;Woah scary physics equation! What does it mean? Well pretty much it calculates the acceleration of a body is the cumulative effect of the gravitational forces of all other bodies on a given object.
+We update our velocity and position like below:&lt;/p&gt;
+$$
+\begin{align*}
+\textbf{Velocity update :} \quad &amp; \mathbf{v}_i^{n+1} = \mathbf{v}_i^n + \mathbf{a}_i^n \Delta t \\
+\textbf{Position update :} \quad &amp; \mathbf{r}_i^{n+1} = \mathbf{r}_i^n + \mathbf{v}_i^n \Delta t
+\end{align*}$$&lt;ul&gt;
+&lt;li&gt;\( G \): Gravitational constant&lt;/li&gt;
+&lt;li&gt;\( \mathbf{r}_i^n \): Position of body \( i \) at step \( n \)&lt;/li&gt;
+&lt;li&gt;\( \mathbf{v}_i^n \): Velocity of body \( i \) at step \( n \)&lt;/li&gt;
+&lt;li&gt;\( \epsilon \): Softening length (avoids singularities when \( r_{ij} \to 0 \))&lt;/li&gt;
+&lt;li&gt;\( \Delta t \): Time step size&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The softening factor (\epsilon) is super important, because since we are not gonna implement collision, our particles theoretically will be on top of each other, and thus the distance between them will be infinitesimally small that the force will explode to such a high number our poor particle will zip out of existence which we definitely do not want.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the code for calculating the acceleration experienced by a given body&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;vector&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; computeAcceleration(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; Body&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; obj1, &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; Body&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; obj2, &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; s_gamma, &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; s_soft) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;vector&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; acc(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0.0f&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//Return zero acceleration if the objects are the same
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;obj1 &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;obj2) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; acc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; x1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; obj1.position[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; y1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; obj1.position[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; x2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; obj2.position[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; y2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; obj2.position[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; m1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; obj1.mass;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; m2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; obj2.mass;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//Compute softened distance to avoid singularity
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sqrt((x1 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x2) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x1 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x2) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (y1 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y2) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y1 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y2) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; s_soft);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (r &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s_gamma &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; m2 &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (r &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; r);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        acc[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (x2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; x1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        acc[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (y2 &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; y1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        acc[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; acc[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; acc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Our Euler Step Method is implemented for the object class as seen below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Object&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;Object()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; position({&lt;span style=&#34;color:#ae81ff&#34;&gt;0.0f&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0.0f&lt;/span&gt;}), velocity({&lt;span style=&#34;color:#ae81ff&#34;&gt;0.0f&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0.0f&lt;/span&gt;}), radius(&lt;span style=&#34;color:#ae81ff&#34;&gt;1.0f&lt;/span&gt;), mass(&lt;span style=&#34;color:#ae81ff&#34;&gt;1.0f&lt;/span&gt;){}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Object&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;Object(std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;array&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; position, std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;array&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; velocity, &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; radius, &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; mass)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; position(position), velocity(velocity), radius(radius), mass(mass){}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Object&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;accelerate(&lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; x, &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; y, &lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; dt){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    velocity[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; dt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    velocity[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; y &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; dt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Object&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;updatePos(&lt;span style=&#34;color:#66d9ef&#34;&gt;float&lt;/span&gt; dt){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    position[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; velocity[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; dt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    position[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; velocity[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; dt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The accelerate function updates our velocity by taking acceleration in the x and y directions. After which, we call our &lt;code&gt;updatePos&lt;/code&gt; function, which then uses the update velocities to compute the new position, and thus we have our selves a lovely n body simulation.&lt;/p&gt;
+&lt;h3 id=&#34;performance-of-brute-force&#34;&gt;Performance of Brute Force&lt;/h3&gt;
+&lt;p&gt;!&lt;img src=&#34;http://localhost:1313/images/Graph%20of%20Brute%20Force%20Performance.png&#34; alt=&#34;Image Description&#34;&gt;
+This brute force implementation of an N body simulation get&amp;rsquo;s mad when we increase the number of bodies. Taking almost 7 seconds to render a single frame at 7000 bodies, far away from the 200,000 bodies I promised you. Don&amp;rsquo;t get mad yet, we have haven&amp;rsquo;t even reached the tip of the ice berg when it comes to optimizing this simulation. The next part of this story will be journey of beautiful spatial partitioning and dopamine inducing n body interactions. Stay tuned!&lt;/p&gt;
+</content>
     </item>
     
   </channel>

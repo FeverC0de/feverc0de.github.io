@@ -2,12 +2,11 @@
 <html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
-    <title>Optimized Real Time N-Body Simulation - Part 1 Quad Tree :: Nick&#39;s Blog</title>
+    <title>Optimized Real Time N-Body Simulation - Part 1 Brute Force Method :: Nick&#39;s Blog</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="N-body Shenanigans (Writing In Progress) [[Pasted image 20250704025301.png]]
-We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
+<meta name="description" content="N-body Shenanigans (Writing In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
 " />
 <meta name="keywords" content="" />
 
@@ -82,9 +81,8 @@ We&rsquo;ve all seen those cool simulations colliding or a black hole sucking ev
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Optimized Real Time N-Body Simulation - Part 1 Quad Tree">
-<meta property="og:description" content="N-body Shenanigans (Writing In Progress) [[Pasted image 20250704025301.png]]
-We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
+<meta property="og:title" content="Optimized Real Time N-Body Simulation - Part 1 Brute Force Method">
+<meta property="og:description" content="N-body Shenanigans (Writing In Progress) We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
 " />
 <meta property="og:url" content="http://localhost:1313/posts/n-body-shenanigans/" />
 <meta property="og:site_name" content="Nick&#39;s Blog" />
@@ -212,7 +210,7 @@ We&rsquo;ve all seen those cool simulations colliding or a black hole sucking ev
     
 <article class="post">
   <h1 class="post-title">
-    <a href="http://localhost:1313/posts/n-body-shenanigans/">Optimized Real Time N-Body Simulation - Part 1 Quad Tree</a>
+    <a href="http://localhost:1313/posts/n-body-shenanigans/">Optimized Real Time N-Body Simulation - Part 1 Brute Force Method</a>
   </h1>
   <div class="post-meta"><time class="post-date">2025-06-14</time></div>
 
@@ -236,7 +234,7 @@ We&rsquo;ve all seen those cool simulations colliding or a black hole sucking ev
 
   <div class="post-content"><div>
         <h1 id="n-body-shenanigans-writing-in-progress">N-body Shenanigans (Writing In Progress)<a href="#n-body-shenanigans-writing-in-progress" class="hanchor" ariaLabel="Anchor">#</a> </h1>
-<p>[[Pasted image 20250704025301.png]]</p>
+<p><img src="/images/Pasted%20image%2020250704025301.png" alt="Image Description"></p>
 <p>We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!</p>
 <p>If you have no idea what either of those words mean, neither did I a couple weeks ago. But do not worry, after reading this we will both be super-experts in optimizing n-body simulations.</p>
 <h2 id="simple-pair-interactions">Simple Pair Interactions<a href="#simple-pair-interactions" class="hanchor" ariaLabel="Anchor">#</a> </h2>
@@ -244,7 +242,71 @@ We&rsquo;ve all seen those cool simulations colliding or a black hole sucking ev
 $$
 \mathbf{a}_i^n = -G \sum_{\substack{j=1 \\ j \neq i}}^{N} m_j \frac{\mathbf{r}_j^n - \mathbf{r}_i^n}{\left( \| \mathbf{r}_j^n - \mathbf{r}_i^n \|^2 + \epsilon^2 \right)^{3/2}}
 \
+$$<p>Woah scary physics equation! What does it mean? Well pretty much it calculates the acceleration of a body is the cumulative effect of the gravitational forces of all other bodies on a given object.
+We update our velocity and position like below:</p>
 $$
+\begin{align*}
+\textbf{Velocity update :} \quad & \mathbf{v}_i^{n+1} = \mathbf{v}_i^n + \mathbf{a}_i^n \Delta t \\
+\textbf{Position update :} \quad & \mathbf{r}_i^{n+1} = \mathbf{r}_i^n + \mathbf{v}_i^n \Delta t
+\end{align*}$$<ul>
+<li>\( G \): Gravitational constant</li>
+<li>\( \mathbf{r}_i^n \): Position of body \( i \) at step \( n \)</li>
+<li>\( \mathbf{v}_i^n \): Velocity of body \( i \) at step \( n \)</li>
+<li>\( \epsilon \): Softening length (avoids singularities when \( r_{ij} \to 0 \))</li>
+<li>\( \Delta t \): Time step size</li>
+</ul>
+<p>The softening factor (\epsilon) is super important, because since we are not gonna implement collision, our particles theoretically will be on top of each other, and thus the distance between them will be infinitesimally small that the force will explode to such a high number our poor particle will zip out of existence which we definitely do not want.</p>
+<p>Here&rsquo;s the code for calculating the acceleration experienced by a given body</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> computeAcceleration(<span style="color:#66d9ef">const</span> Body<span style="color:#f92672">&amp;</span> obj1, <span style="color:#66d9ef">const</span> Body<span style="color:#f92672">&amp;</span> obj2, <span style="color:#66d9ef">float</span> s_gamma, <span style="color:#66d9ef">float</span> s_soft) {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> acc(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0.0f</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Return zero acceleration if the objects are the same
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">&amp;</span>obj1 <span style="color:#f92672">==</span> <span style="color:#f92672">&amp;</span>obj2) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> acc;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> x1 <span style="color:#f92672">=</span> obj1.position[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> y1 <span style="color:#f92672">=</span> obj1.position[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> x2 <span style="color:#f92672">=</span> obj2.position[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> y2 <span style="color:#f92672">=</span> obj2.position[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> m1 <span style="color:#f92672">=</span> obj1.mass;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> m2 <span style="color:#f92672">=</span> obj2.mass;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Compute softened distance to avoid singularity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> r <span style="color:#f92672">=</span> sqrt((x1 <span style="color:#f92672">-</span> x2) <span style="color:#f92672">*</span> (x1 <span style="color:#f92672">-</span> x2) <span style="color:#f92672">+</span> (y1 <span style="color:#f92672">-</span> y2) <span style="color:#f92672">*</span> (y1 <span style="color:#f92672">-</span> y2) <span style="color:#f92672">+</span> s_soft);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (r <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> k <span style="color:#f92672">=</span> s_gamma <span style="color:#f92672">*</span> m2 <span style="color:#f92672">/</span> (r <span style="color:#f92672">*</span> r);
+</span></span><span style="display:flex;"><span>        acc[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> k <span style="color:#f92672">*</span> (x2 <span style="color:#f92672">-</span> x1);
+</span></span><span style="display:flex;"><span>        acc[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> k <span style="color:#f92672">*</span> (y2 <span style="color:#f92672">-</span> y1);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        acc[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> acc[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> acc;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Our Euler Step Method is implemented for the object class as seen below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>Object<span style="color:#f92672">::</span>Object()
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">:</span> position({<span style="color:#ae81ff">0.0f</span>, <span style="color:#ae81ff">0.0f</span>}), velocity({<span style="color:#ae81ff">0.0f</span>, <span style="color:#ae81ff">0.0f</span>}), radius(<span style="color:#ae81ff">1.0f</span>), mass(<span style="color:#ae81ff">1.0f</span>){}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Object<span style="color:#f92672">::</span>Object(std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> position, std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> velocity, <span style="color:#66d9ef">float</span> radius, <span style="color:#66d9ef">float</span> mass)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">:</span> position(position), velocity(velocity), radius(radius), mass(mass){}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Object<span style="color:#f92672">::</span>accelerate(<span style="color:#66d9ef">float</span> x, <span style="color:#66d9ef">float</span> y, <span style="color:#66d9ef">float</span> dt){
+</span></span><span style="display:flex;"><span>    velocity[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> x <span style="color:#f92672">*</span> dt;
+</span></span><span style="display:flex;"><span>    velocity[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> y <span style="color:#f92672">*</span> dt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> Object<span style="color:#f92672">::</span>updatePos(<span style="color:#66d9ef">float</span> dt){
+</span></span><span style="display:flex;"><span>    position[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> velocity[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> dt;
+</span></span><span style="display:flex;"><span>    position[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> velocity[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> dt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The accelerate function updates our velocity by taking acceleration in the x and y directions. After which, we call our <code>updatePos</code> function, which then uses the update velocities to compute the new position, and thus we have our selves a lovely n body simulation.</p>
+<h3 id="performance-of-brute-force">Performance of Brute Force<a href="#performance-of-brute-force" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>!<img src="/images/Graph%20of%20Brute%20Force%20Performance.png" alt="Image Description">
+This brute force implementation of an N body simulation get&rsquo;s mad when we increase the number of bodies. Taking almost 7 seconds to render a single frame at 7000 bodies, far away from the 200,000 bodies I promised you. Don&rsquo;t get mad yet, we have haven&rsquo;t even reached the tip of the ice berg when it comes to optimizing this simulation. The next part of this story will be journey of beautiful spatial partitioning and dopamine inducing n body interactions. Stay tuned!</p>
+
       </div></div>
 
   
