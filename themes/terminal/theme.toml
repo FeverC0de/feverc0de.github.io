@@ -12,3 +12,10 @@ min_version = 0.90
   name = "panr"
   homepage = "https://radoslawkoziel.pl"
   twitter = "https://twitter.com/panr"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]

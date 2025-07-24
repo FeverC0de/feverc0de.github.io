@@ -104,6 +104,21 @@
 
 
 
+
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
+  
 </head>
 <body>
 
@@ -221,7 +236,7 @@
         <div class="post-content">
           
             <h1 id="n-body-shenanigans-writing-in-progress">N-body Shenanigans (Writing In Progress)</h1>
-<p><img src="/images/Pasted%20image%2020250704025301.png" alt="Image Description"></p>
+<p>[[Pasted image 20250704025301.png]]</p>
 <p>We&rsquo;ve all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle is simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my braincells die in vain, I put my self through the long arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) n-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!</p>
           
         </div>
