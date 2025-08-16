@@ -1,6 +1,6 @@
 ---
 title: Optimized Real Time N-Body Simulation - Part 1 Brute Force Method
-date: 2025-06-14
+date: 2025-08-10
 tags:
   - simulations
   - optimizations
@@ -23,7 +23,7 @@ $$
 \
 $$
 
-Woah, scary physics equation! What does it mean? Well it pretty much shows the acceleration a particle experiences is the cumulation effect of the gravitational force from all other particles.
+Woah, scary physics equation! What does it mean? Well it pretty much shows the acceleration a particle experiences is the cumulative effect of the gravitational force from all other particles.
 
 We update our velocity and position like below:
 
@@ -39,7 +39,7 @@ $$
 - \( \epsilon \): Softening length (avoids singularities when \( r_{ij} \to 0 \))  
 - \( \Delta t \): Time step size  
 
-The softening factor \( \epsilon\) is super important, because since we are not gonna implement collisions, our particles theoretically will be on top of each other, and thus the distance between them will be infinitesimally small, that the force will explode to such a high number our poor particle will zip out of existence which we definitely do not want.
+The softening factor \( \epsilon\) is super important, because since we are not gonna implement collisions, our particles theoretically will be on top of each other, and thus the distance between them will be so infinitesimally small that the force will explode to such an incomprehensibly high number that our poor particle will zip out of existence.
 
 Here's the code for calculating the acceleration experienced by a given body
 
@@ -97,5 +97,6 @@ The accelerate function updates our velocity by taking acceleration in the x and
 
 TA DA! Lovely,  lovely N-body simulation that you can show your friends! But wait, there is a catch to this simulation.
 ## Performance of Brute Force Simulation
+I'm going to be testing this SOT simulation on an increasing number of bodies to see how the performance scales.
 ![Image Description](/images/Graph%20of%20Brute%20Force%20Performance.png)
-This brute-force implementation of an N body simulation gets mad when we increase the number of bodies and slows down significantly. It takes almost 7 seconds to render a single frame at 7000 bodies, far away from the 200,000 body simulation I promised you. Don't get mad yet, we have haven't even reached the tip of the ice berg when it comes to optimizing this simulation. The next part of this story will be journey of beautiful spatial partitioning and dopamine inducing N-body interactions. Stay tuned!
+This brute-force implementation of an N-body simulation gets mad when we increase the number of bodies and slows down significantly. It takes almost 7 seconds to render a single frame at 50000 bodies, far away from the 200,000 body real-time simulation I promised you. Don't leave yet! We have haven't even reached the tip of the iceberg when it comes to optimizing this simulation. The next part of this story will be journey of beautiful spatial partitioning and dopamine inducing N-body interactions. Stay tuned!
