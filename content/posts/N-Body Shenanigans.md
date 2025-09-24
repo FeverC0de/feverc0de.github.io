@@ -8,7 +8,7 @@ tags:
   - in_progress
 ---
 # N-body Shenanigans (Writing In Progress)
-[[Pasted image 20250704025301.png]]
+![Image Description](/images/Pasted%20image%2020250704025301.png)
 
 We've all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle gets simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my brain cells die in vain, I put myself through the long, arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) N-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
 
@@ -98,5 +98,5 @@ The accelerate function updates our velocity by taking acceleration in the x and
 TA DA! Lovely,  lovely N-body simulation that you can show your friends! But wait, there is a catch to this simulation.
 ## Performance of Brute Force Simulation
 I'm going to be testing this SOT simulation on an increasing number of bodies to see how the performance scales.
-[[Graph of Brute Force Performance.png]]
+![Image Description](/images/Graph%20of%20Brute%20Force%20Performance.png)
 This brute-force implementation of an N-body simulation gets mad when we increase the number of bodies and slows down significantly. It takes almost 7 seconds to render a single frame at 50000 bodies, far away from the 200,000 body real-time simulation I promised you. Don't leave yet! We have haven't even reached the tip of the iceberg when it comes to optimizing this simulation. The next part of this story will be journey of beautiful spatial partitioning and dopamine inducing N-body interactions. Stay tuned!
