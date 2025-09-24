@@ -33,5 +33,5 @@ Printing out `page.content` will give us what we need!
 
 Oh... well this made no sense to me. Though, I do get some relevant information at about an Instagram icon? Okay honestly, 90% of the stuff you see in the output is useless. We're going to want to find a way to strip away all the ugly HTML fluff and get beautiful coherent words and sentences.
 
-... To be co
+... To be continued
 

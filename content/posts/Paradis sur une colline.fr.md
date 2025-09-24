@@ -7,7 +7,7 @@ tags:
 date: 2025-06-20
 ---
 # Paix sur une colline
-![Image Description](/images/Pasted%20image%2020250620014051.fr.png)
+[[Pasted image 20250620014051.fr.png]]
 Je me trouve sur une colline. 
 
 Une colline verte où les oiseaux chantent sous les rayons dorés du soleil.
