@@ -7,7 +7,7 @@ tags:
   - cpp
   - in_progress
 ---
-# N-body Shenanigans (Writing In Progress)
+# N-body Shenanigans 
 ![Image Description](/images/Pasted%20image%2020250704025301.png)
 
 We've all seen those cool simulations colliding or a black hole sucking everything up. I find them pretty cool to look at. Wondering how every particle gets simulated made me even more interested and also broke my brain. Eager to satisfy this curiosity and not let my brain cells die in vain, I put myself through the long, arduous journey of trying to make my own. Of course the fruits of this quest blessed the world with the fantastically written (you have been warned) N-body simulation optimized with parallelized quad-tree constructions using morton order sorting capable of running 200,000 independent particles in real-time!
